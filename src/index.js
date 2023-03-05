@@ -8,5 +8,5 @@ root.render(
         <App/>
     </StrictMode>
 
-    
+
 );
