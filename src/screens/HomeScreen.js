@@ -1,8 +1,8 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {
-    Box, Image,
+    Box,
 } from '@chakra-ui/react'
-import {Items, PaginatedItems} from "./pagination";
+import {Items} from "./pagination";
 
 
 function HomeScreen(props) {
@@ -14,7 +14,6 @@ function HomeScreen(props) {
         <>
             <Box maxW = "1000px" bg="">
                 <Items/>
-                <PaginatedItems/>
             </Box>
         </>
 
