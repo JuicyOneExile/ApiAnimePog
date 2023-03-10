@@ -9,8 +9,6 @@ const Header = () => {
                 <Heading>AnimeList</Heading>
                 <Spacer/>
                 <Avatar />
-                <Spacer/>
-                <DrawerExample/>
             </Flex>
         </Box>
     )

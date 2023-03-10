@@ -1,5 +1,11 @@
 import axios from "axios";
 
+export const fetchPagination = async () =>{
+    const url = "https://api.jikan.moe/v4/top/anime?filter=airing"
+    const response = await axios.get(url)
+        .then(response => response.data.)
+    return response;
+}
 export const fetchAnimeAiring = async () =>{
     const url = "https://api.jikan.moe/v4/top/anime?filter=airing"
     const response =  await axios.get(url)
