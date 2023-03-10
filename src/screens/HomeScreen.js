@@ -8,12 +8,14 @@ import axios from "axios";
 import ReactPaginate from 'react-paginate';
 import "../styles/pagination.css";
 
+const filters = [{query: "airing", name: "Airing"},
+    {query: "upcoming", name: "Upcoming"},
+    {query: "bypopularity", name: "Popular"},
+    {query: "favorite", name: "Favorite"}];
 
-function ChevronDownIcon() {
-    return null;
-}
 
 function HomeScreen(props) {
+
     const [filter, setFilter] = useState("airing");
     const [page, setPage] = useState(1);
     const fetchAnime = async (_filter, _page) =>
@@ -22,24 +24,18 @@ function HomeScreen(props) {
     const {data, isLoading, isError} = useQuery([`${page}${filter}animes`, page], () => fetchAnime(filter, page));
     return (
         <Stack spacing={30}>
-            <Flex justifyContent="flex-end" >
+            <Flex justifyContent="flex-end">
                 <Menu>
-                    <MenuButton as={Button} textTransform="capitalize" rightIcon={<ChevronDownIcon />}>
+                    <MenuButton as={Button} textTransform="capitalize">
                         {filter}
                     </MenuButton>
                     <MenuList>
-                        <MenuItem value={"airing"}>
-                            Airing
-                        </MenuItem>
-                        <MenuItem value={"bypopularity"}>
-                            Popular
-                        </MenuItem>
-                        <MenuItem value={"upcoming"}>
-                            Upcoming
-                        </MenuItem>
-                        <MenuItem value={"favorite"}>
-                            Favorite
-                        </MenuItem>
+                        {filters.map((x, i) =>
+                            <MenuItem key={i} value={x.query} onClick={event => setFilter(event.target.value)}>
+                                {x.name}
+                            </MenuItem>
+
+                        )}
                     </MenuList>
                 </Menu>
             </Flex>
@@ -47,23 +43,21 @@ function HomeScreen(props) {
                 <Box maxW="1000px" bg="">
 
                     <SimpleGrid columns={[2, 3, 4]} spacing='40px'>
-                    {data?.data.map(x =>
-                        <Box>
-                            <AspectRatio ratio={4/6}>
-                                <Image src={x.images.jpg.image_url} />
-                            </AspectRatio>
-                            <Text>{x.title}</Text>
-                        </Box>
-
-
-                    )}
-                        </SimpleGrid>
+                        {data?.data.map((x,i) =>
+                            <Box key={i}>
+                                <AspectRatio ratio={4 / 6}>
+                                    <Image src={x.images.jpg.image_url}/>
+                                </AspectRatio>
+                                <Text noOfLines={2} >{x.title}</Text>
+                            </Box>
+                        )}
+                    </SimpleGrid>
                 </Box>}
             <Flex>
                 <ReactPaginate
                     breakLabel="..."
                     nextLabel="next >"
-                    onPageChange={(e) => setPage(e.selected+1)}
+                    onPageChange={(e) => setPage(e.selected + 1)}
                     pageRangeDisplayed={5}
                     pageCount={data?.pagination?.last_visible_page}
                     previousLabel="< previous"
@@ -77,10 +71,6 @@ function HomeScreen(props) {
                     pageClassName={'item pagination-page '}
                     previousClassName={"item previous"}
                 />
-                {/*<h1>{page}</h1>
-                <Button onClick={() => setPage(prev => prev+1)}>
-                    "+1 page"
-                </Button>*/}
 
             </Flex>
         </Stack>

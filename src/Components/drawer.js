@@ -1,21 +1,22 @@
 import {
-    Drawer,
-    DrawerBody,
-    DrawerFooter,
+    Button,
+    Drawer, DrawerBody,
+    DrawerCloseButton,
+    DrawerContent, DrawerFooter,
     DrawerHeader,
-    DrawerOverlay,
-    DrawerContent,
-    DrawerCloseButton, useDisclosure, Button, Input,
-} from '@chakra-ui/react'
-function DrawerExample() {
+    DrawerOverlay, Icon, IconButton, Input, Stack,
+    useDisclosure
+} from "@chakra-ui/react";
+import React from "react";
+import {HamburgerIcon} from "@chakra-ui/icons";
+
+export function DrawerExample() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = React.useRef()
 
     return (
-        <>
-            <Button ref={btnRef} colorScheme='teal' onClick={onOpen}>
-                Open
-            </Button>
+        <Stack>
+            <IconButton   icon={<HamburgerIcon />} onClick={onOpen}/>
             <Drawer
                 isOpen={isOpen}
                 placement='right'
@@ -39,7 +40,7 @@ function DrawerExample() {
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>
-        </>
+
+        </Stack>
     )
 }
-export default DrawerExample;
