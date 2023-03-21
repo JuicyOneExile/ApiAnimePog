@@ -1,11 +1,11 @@
-import {Flex, IconButton, Input, Stack} from "@chakra-ui/react";
-import React from "react";
-import {SearchIcon} from "@chakra-ui/icons";
-export function SearchBox() {
-    return(
-        <Flex>
-            <Input placeholder='medium size' size='md' />
-            <IconButton icon={<SearchIcon/>}/>
-        </Flex>
+import React from 'react';
+import {Input} from "@chakra-ui/react";
+
+function SearchBox({searchQuery, setSearchQuery}) {
+    return (
+        <Input variant='filled' placeholder='Cerca' value={searchQuery} onChange={e => setSearchQuery(e.target.value)}/>
     );
+
 }
+
+export default SearchBox;
