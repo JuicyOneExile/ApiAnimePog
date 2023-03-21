@@ -14,7 +14,7 @@ root.render(
         <BrowserRouter>
         <ChakraProvider>
             <QueryClientProvider client={client}>
-               <Header />
+               <Header/>
                 <App/>
 
             </QueryClientProvider>

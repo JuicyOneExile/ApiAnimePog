@@ -1,23 +1,21 @@
-import {Avatar, Box, Flex, Heading, Spacer, Text} from "@chakra-ui/react";
+import {Avatar, Box, Button, Container, Flex, Heading, Spacer, Stack, Text} from "@chakra-ui/react";
 import React, {useState} from "react";
-import {DrawerExample} from "./drawer";
 import {Link} from "react-router-dom";
-import SearchBox from "./searchBox";
+import SearchBar from "../searchComponents/searchBar";
 
 const Header = () => {
-    const [searchQuery, setSearchQuery] = useState("");
     return (
-        <Box maxW="100%" bg="blue" mb="10">
-            <Flex justifyContent="flex-start" align="center" p={2.5} gap={5}>
-                <Heading><Link to="/">
+        <Stack justifyContent="flex-start" align="center"  maxW="100%" bg="#222222">
+            <Flex minW="60%" justifyContent="flex-start"  p={2.5} gap={5} bg="#222222">
+                <Heading color="#afacac"><Link to="/">
                     AnimeList
                 </Link>
                 </Heading>
                 <Spacer/>
+                <SearchBar/>
                 <Avatar/>
-                <DrawerExample/>
             </Flex>
-        </Box>
+        </Stack>
     )
 }
 
