@@ -1,17 +1,17 @@
 import React from "react";
 import HomeScreen from "./pages/HomeScreen";
-import {Route, Routes} from "react-router-dom";
+import {Route, Router, Routes} from "react-router-dom";
 import Details from "./pages/Details";
+import AnimeSearchResults from "./pages/AnimeSearchResults";
 
 
-
-const App = () =>{
-    return(
+const App = () => {
+    return (
         <Routes>
-            <Route path="/" element={<HomeScreen/>}/>
-            <Route path="/animes/:id" element={<Details/>}/>
+                <Route path="/" exact element={<HomeScreen/>} />
+                <Route path="/animes/:id" element={<Details/>} />
+                <Route path="/search-results" element={<AnimeSearchResults/>} />
         </Routes>
-
     )
 }
 

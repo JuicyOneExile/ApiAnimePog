@@ -1,7 +1,7 @@
 import {Avatar, Box, Button, Container, Flex, Heading, Spacer, Stack, Text} from "@chakra-ui/react";
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import SearchBar from "../searchComponents/searchBar";
+import AnimeSearchBar from "../searchComponents/AnimeSearchBar";
 
 const Header = () => {
     return (
@@ -11,8 +11,7 @@ const Header = () => {
                     AnimeList
                 </Link>
                 </Heading>
-                <Spacer/>
-                <SearchBar/>
+                <AnimeSearchBar/>
                 <Avatar/>
             </Flex>
         </Stack>

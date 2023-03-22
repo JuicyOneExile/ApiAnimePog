@@ -61,7 +61,7 @@ function HomeScreen(props) {
                                         {x.name}
                                     </Tab>
                                 )}
-                                </TabList>
+                            </TabList>
                         </Tabs>
                     </Box>
                     {isLoading ? <div> Loading...</div> :
