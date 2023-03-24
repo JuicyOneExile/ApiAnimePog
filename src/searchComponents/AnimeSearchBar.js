@@ -1,8 +1,8 @@
-import {useState} from 'react';
-import {Input, InputGroup, InputRightElement, IconButton, VStack} from '@chakra-ui/react';
-import {useNavigate} from 'react-router-dom';
-import {SearchIcon} from '@chakra-ui/icons';
-import axios from 'axios';
+import {useNavigate} from "react-router-dom";
+import {useState} from "react";
+import axios from "axios";
+import {IconButton, Input, InputGroup, InputRightElement} from "@chakra-ui/react";
+import {SearchIcon} from "@chakra-ui/icons";
 
 function AnimeSearchBar() {
     const [query, setQuery] = useState('');
@@ -15,12 +15,19 @@ function AnimeSearchBar() {
         navigate('/search-results', {state: {animeList: animeList}});
     };
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            searchAnime();
+        }
+    };
+
     return (
         <InputGroup size="lg">
             <Input
                 placeholder="Search anime"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={handleKeyDown}
                 bg="gray.700"
                 color="gray.100"
                 _placeholder={{color: 'gray.400'}}
@@ -44,5 +51,4 @@ function AnimeSearchBar() {
         </InputGroup>
     );
 }
-
-export default AnimeSearchBar;
+export default AnimeSearchBar
