@@ -21,8 +21,7 @@ function AnimeSearchBar() {
         }
     };
 
-    return (
-        <InputGroup size="lg">
+    return (<InputGroup size="lg">
             <Input
                 placeholder="Search anime"
                 value={query}
@@ -48,7 +47,7 @@ function AnimeSearchBar() {
                     onClick={searchAnime}
                 />
             </InputRightElement>
-        </InputGroup>
-    );
+        </InputGroup>);
 }
+
 export default AnimeSearchBar

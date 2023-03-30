@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import {Box, Image, IconButton, AspectRatio} from "@chakra-ui/react";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import {IoIosArrowBack, IoIosArrowForward} from "react-icons/io";
 
-const ImageCarousel = ({ images }) => {
+const ImageCarousel = ({images}) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     useEffect(() => {
@@ -29,13 +29,13 @@ const ImageCarousel = ({ images }) => {
 
     return (
         <Box position="relative" paddingY={10}>
-            <AspectRatio ratio={20/10}>
-                <Image src={images[currentImageIndex]} alt="carousel image" />
+            <AspectRatio ratio={20 / 10}>
+                <Image src={images[currentImageIndex]} alt="carousel image"/>
             </AspectRatio>
 
             <IconButton
                 aria-label="Previous image"
-                icon={<IoIosArrowBack />}
+                icon={<IoIosArrowBack/>}
                 onClick={handlePrevImage}
                 position="absolute"
                 top="50%"
@@ -45,7 +45,7 @@ const ImageCarousel = ({ images }) => {
 
             <IconButton
                 aria-label="Next image"
-                icon={<IoIosArrowForward />}
+                icon={<IoIosArrowForward/>}
                 onClick={handleNextImage}
                 position="absolute"
                 top="50%"

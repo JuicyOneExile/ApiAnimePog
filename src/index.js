@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom/client';
 import React, {StrictMode} from "react";
 import App from "./App";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
-import {ChakraProvider, Container, Flex} from "@chakra-ui/react";
+import {ChakraProvider} from "@chakra-ui/react";
 import Header from "./Components/header";
 import {BrowserRouter} from "react-router-dom";
 

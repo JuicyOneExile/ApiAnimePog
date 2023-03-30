@@ -1,6 +1,6 @@
 import React from "react";
 import HomeScreen from "./pages/HomeScreen";
-import {Route, Router, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import Details from "./pages/Details";
 import AnimeSearchResults from "./pages/AnimeSearchResults";
 
