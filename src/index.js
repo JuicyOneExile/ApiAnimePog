@@ -1,4 +1,3 @@
-import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import React, {StrictMode} from "react";
 import App from "./App";
@@ -23,6 +22,5 @@ root.render(
             </ChakraProvider>
         </BrowserRouter>
     </StrictMode>
-
 
 );

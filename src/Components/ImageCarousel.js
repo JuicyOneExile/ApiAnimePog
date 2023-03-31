@@ -28,7 +28,7 @@ const ImageCarousel = ({images}) => {
     };
 
     return (
-        <Box position="relative" paddingY={10}>
+        <Box position="relative">
             <AspectRatio ratio={20 / 10}>
                 <Image src={images[currentImageIndex]} alt="carousel image"/>
             </AspectRatio>

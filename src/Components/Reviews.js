@@ -1,10 +1,10 @@
-import React, { useState, useRef } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { Box, Text, Image, Flex, Spacer } from '@chakra-ui/react';
+import React, {useState, useRef} from 'react';
+import {useQuery} from '@tanstack/react-query';
+import {Box, Text, Image, Flex, Spacer} from '@chakra-ui/react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
-const Reviews = ({ animeId }) => {
+const Reviews = ({animeId}) => {
     const fetchReviews = async () => {
         const response = await axios.get(
             `https://api.jikan.moe/v4/anime/${animeId}/reviews`
@@ -13,11 +13,11 @@ const Reviews = ({ animeId }) => {
     };
     const formattedDate = (dateString) => {
         const date = new Date(dateString);
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const options = {year: 'numeric', month: 'long', day: 'numeric'};
         return date.toLocaleDateString('en-US', options);
     };
 
-    const { data, isLoading, isError } = useQuery(['reviews', animeId], fetchReviews);
+    const {data, isLoading, isError} = useQuery(['reviews', animeId], fetchReviews);
     const [expanded, setExpanded] = useState(false);
     const [expandedIndex, setExpandedIndex] = useState(-1);
     const MAX_LINES = 3;
@@ -44,11 +44,11 @@ const Reviews = ({ animeId }) => {
             maxHeight="400px"
             width="100%"
         >
-            <Text fontSize="xl" mb={5}>
+            <Text fontSize="xl" mb={5} align="left">
                 Reviews
             </Text>
             {reviews.length === 0 ? (
-                <Text>No reviews found for this anime.</Text>
+                <Text align="left">No reviews found for this anime.</Text>
             ) : (
                 reviews.map((review, index) => (
                     <Box
@@ -61,40 +61,40 @@ const Reviews = ({ animeId }) => {
                             expandedIndex === index
                                 ? (ref) =>
                                     ref &&
-                                    ref.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                                    ref.scrollIntoView({behavior: 'smooth', block: 'center'})
                                 : null
                         }
+                        align="left"
                     >
                         <Flex d="flex" alignItems="center" mb={2}>
                             <Image
                                 src={review.user.images.jpg.image_url}
                                 alt="User profile picture"
                                 boxSize={10}
-                                ml={5}
-                                mr={5}
+                                ml={{base: 2, md: 5}}
+                                mr={{base: 2, md: 5}}
                                 borderRadius={50}
                             />
                             <Text fontWeight="bold">{review.user.username}</Text>
-                            <Spacer />
-                            <Text>{formattedDate(review.created_at)}</Text>
+                            <Spacer/>
+                            <Text>{formattedDate(review.date)}</Text>
                         </Flex>
                         <Text
                             color="gray.500"
                             noOfLines={expanded && expandedIndex === index ? undefined : MAX_LINES}
-                            ml={5}
-                            mr={5}
-                        >
+                            ml={{base: 2, md: 5}}
+                            mr={{base: 2, md: 5}}
+                            align="left">
                             {review.review}
                         </Text>
                         {review.review.split('\n').length > MAX_LINES && (
                             <Text
                                 as={Link}
                                 onClick={() => handleToggleExpand(index)}
-                                alignSelf="flex-start"
                                 color="gray.550"
-                                m={5}
-                                _hover={{ color: 'gray.600' }}
-                            >
+                                m={{base: 2, md: 5}}
+                                _hover={{color: 'gray.600'}}
+                                align="left">
                                 {expanded && expandedIndex === index ? 'See less' : 'See more'}
                             </Text>
                         )}

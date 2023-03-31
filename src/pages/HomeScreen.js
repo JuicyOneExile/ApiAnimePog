@@ -13,6 +13,7 @@ import image4 from "../images/image4.jpg";
 import image5 from "../images/image5.jpg";
 import luffy from "../images/luffy.png";
 import {useLocation} from 'react-router-dom';
+import Pagination from "../Components/pagination";
 
 const images = [image1, image2, image3, image4, image5];
 
@@ -36,11 +37,6 @@ function HomeScreen(props) {
 
     const {data, isLoading, isError} = useQuery([`${page}${filter}animes`, page], () => fetchAnime(filter, page));
 
-    const handlePageClick = (selectedPage) => {
-        setCurrentPage(selectedPage);
-        setPage(selectedPage + 1);
-    };
-
     useEffect(() => {
         if (state && state.page) {
             setPage(state.page);
@@ -48,69 +44,46 @@ function HomeScreen(props) {
         }
     }, [state]);
     return (
-        <Container maxW="100%" bg="#1a1a1a" bgImage={luffy} backgroundRepeat="no-repeat" backgroundPosition="right" backgroundAttachment="fixed" bgSize="25%">
+        <Container bg="#1a1a1a" bgImage={{base: null, xl: luffy}} backgroundRepeat="no-repeat"
+                   backgroundPosition="right" backgroundAttachment="fixed" bgSize="25%" p={4} maxW="100%" align="center" justify="center">
+            <Box maxW="container.lg" >
+                <Box align="center" justify="center">
+                    <Box maxW="100%" borderRadius="md" bg="#222222" mb={5} padding={4}>
 
-            <Container maxW="60%" align="center" justify="center" paddingY={4}>
-                <Container maxW="100%" borderRadius="md" bg="#222222"  mb={5}>
+                        <ImageCarousel images={images}/>
+                    </Box>
 
-                    <ImageCarousel images={images}/>
-                </Container>
-
-                <Stack bg="#222222" p={5} borderRadius="md">
-                    <Box paddingY={3}>
-                        <Tabs>
+                    <Stack bg="#222222" p={5} borderRadius="md" flexDirection="column">
+                        <Tabs align="left">
                             <TabList color="#afacac">
                                 {filters.flatMap((x, i) =>
-                                    <Tab textTransform="capitalize" key={i} value={x.query} onClick={event => setFilter(event.target.value)}>
+                                    <Tab textTransform="capitalize" key={i} value={x.query}
+                                         onClick={event => setFilter(event.target.value)} fontSize={{base: '12px', md: '15px'}}>
                                         {x.name}
                                     </Tab>
                                 )}
                             </TabList>
                         </Tabs>
-                    </Box>
-                    {isLoading ? <div> Loading...</div> :
-                        <Flex justifyContent="center">
-                            <Box maxW="1000px" bg="">
-                                <SimpleGrid columns={[2, 3, 4]} spacing='40px'>
-                                    {data?.data.flatMap((x, i) =>
-                                        <Box key={i} as={Link} to={`/animes/${x.mal_id}`}>
-                                            <AspectRatio ratio={4 / 6}>
-                                                <Image src={x.images.jpg.image_url}/>
-                                            </AspectRatio>
-                                            <Text noOfLines={2} color="#afacac">{x.title}</Text>
-                                        </Box>
-                                    )}
-                                </SimpleGrid>
-                            </Box>
-                        </Flex>}
-                    <Flex justifyContent={"center"}>
-                        <ReactPaginate
-                            breakLabel="..."
-                            nextLabel="next"
-                            onPageChange={(e) => {
-                                console.log("last_visible_page:", data?.pagination?.last_visible_page);
-                                console.log("selected page:", e.selected + 1);
-                                setPage(e.selected + 1);
-                                setCurrentPage(e.selected + 1);
-                            }}
-                            pageRangeDisplayed={5}
-                            pageCount={data?.pagination?.last_visible_page}
-                            previousLabel="previous"
-                            renderOnZeroPageCount={null}
-                            activeClassName={'item active '}
-                            breakClassName={'item break-me '}
-                            containerClassName={'pagination'}
-                            disabledClassName={'disabled-page'}
-                            marginPagesDisplayed={2}
-                            nextClassName={"item next "}
-                            pageClassName={'item pagination-page '}
-                            previousClassName={"item previous"}
-                        />
-                    </Flex>
-                </Stack>
-            </Container>
+                        {isLoading ? <div> Loading...</div> :
+                            <Flex justifyContent="center">
+                                <Box maxW="1000px" bg="">
+                                    <SimpleGrid columns={{base: 2, md: 3, lg: 4}} spacing='40px'>
+                                        {data?.data.flatMap((x, i) =>
+                                            <Box key={i} as={Link} to={`/animes/${x.mal_id}`}>
+                                                <AspectRatio ratio={4 / 6}>
+                                                    <Image src={x.images.jpg.image_url}/>
+                                                </AspectRatio>
+                                                <Text noOfLines={2} color="#afacac">{x.title}</Text>
+                                            </Box>
+                                        )}
+                                    </SimpleGrid>
+                                </Box>
+                            </Flex>}
+                            <Pagination data={data} page={page} setPage={setPage} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+                    </Stack>
+                </Box>
+            </Box>
         </Container>
-
     );
 }
 
