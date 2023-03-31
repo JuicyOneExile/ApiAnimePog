@@ -37,7 +37,7 @@ function Details(props) {
         <Container maxW="100%" minHeight="100vh" bg="#1a1a1a" py={8} align="center">
             <Box maxW="container.lg" bg="#1a1a1a" py={8}>
                 <Flex flexDirection={{base: "column", lg: "row"}} color="#afacac" mb={5}>
-                    <AspectRatio minW="sm" ratio={4 / 6} flex="1">
+                    <AspectRatio minW="sm" ratio={4 / 6} flex="1" align="center">
                         <Image src={data.data.images.jpg.image_url} />
                     </AspectRatio>
                     <Box flex="1" ml={{ base: 0, lg: "40px" }} align="left">
