@@ -11,6 +11,7 @@ import image2 from "../images/image2.jpg";
 import image3 from "../images/image3.jpg";
 import image4 from "../images/image4.jpg";
 import image5 from "../images/image5.jpg";
+import luffy from "../images/luffy.png";
 import {useLocation} from 'react-router-dom';
 
 const images = [image1, image2, image3, image4, image5];
@@ -47,18 +48,20 @@ function HomeScreen(props) {
         }
     }, [state]);
     return (
-        <Container maxW="100%" bg="#1a1a1a">
-            <Container maxW="60%" bg="#1a1a1a">
-                <Container maxW="100%">
+        <Container maxW="100%" bg="#1a1a1a" bgImage={luffy} backgroundRepeat="no-repeat" backgroundPosition="right" backgroundAttachment="fixed" bgSize="25%">
+
+            <Container maxW="60%" align="center" justify="center" paddingY={4}>
+                <Container maxW="100%" borderRadius="md" bg="#222222"  mb={5}>
+
                     <ImageCarousel images={images}/>
                 </Container>
-                <Stack maxW="100%" justifyContent="center" bg="#222222" p={5}>
+
+                <Stack bg="#222222" p={5} borderRadius="md">
                     <Box paddingY={3}>
                         <Tabs>
                             <TabList color="#afacac">
                                 {filters.flatMap((x, i) =>
-                                    <Tab textTransform="capitalize" key={i} value={x.query}
-                                         onClick={event => setFilter(event.target.value)}>
+                                    <Tab textTransform="capitalize" key={i} value={x.query} onClick={event => setFilter(event.target.value)}>
                                         {x.name}
                                     </Tab>
                                 )}
@@ -75,7 +78,6 @@ function HomeScreen(props) {
                                                 <Image src={x.images.jpg.image_url}/>
                                             </AspectRatio>
                                             <Text noOfLines={2} color="#afacac">{x.title}</Text>
-
                                         </Box>
                                     )}
                                 </SimpleGrid>
@@ -84,17 +86,16 @@ function HomeScreen(props) {
                     <Flex justifyContent={"center"}>
                         <ReactPaginate
                             breakLabel="..."
-                            nextLabel="next >"
+                            nextLabel="next"
                             onPageChange={(e) => {
                                 console.log("last_visible_page:", data?.pagination?.last_visible_page);
                                 console.log("selected page:", e.selected + 1);
                                 setPage(e.selected + 1);
                                 setCurrentPage(e.selected + 1);
                             }}
-
                             pageRangeDisplayed={5}
                             pageCount={data?.pagination?.last_visible_page}
-                            previousLabel="< previous"
+                            previousLabel="previous"
                             renderOnZeroPageCount={null}
                             activeClassName={'item active '}
                             breakClassName={'item break-me '}
@@ -105,13 +106,11 @@ function HomeScreen(props) {
                             pageClassName={'item pagination-page '}
                             previousClassName={"item previous"}
                         />
-
-
                     </Flex>
                 </Stack>
-
             </Container>
         </Container>
+
     );
 }
 
