@@ -35,7 +35,7 @@ function Details(props) {
 
     return (
         <Container maxW="100%" minHeight="100vh" bg="#1a1a1a" py={0} align="center">
-            <Box maxW="container.lg" bg="#1a1a1a" p={4}>
+            <Box maxW="container.lg" bg="#1a1a1a" py={4}>
                 <Flex flexDirection={{base: "column", lg: "row"}} color="#afacac" align="center" justify="center">
                     <AspectRatio minW="sm" ratio={4 / 6} flex="1">
                         <Image src={data.data.images.jpg.image_url} style={{height: '80%', width: '80%', margin: 'auto'}}/>
@@ -76,7 +76,7 @@ function Details(props) {
                         </VStack>
                     </Box>
                 </Flex>
-                <Flex direction="column" bgColor="#222222" borderRadius="md">
+                <Flex direction="column" bgColor="#222222" borderRadius="md" my={5}>
                     {synopsis ? (
                         <Text color="#afacac" fontSize="md" m={5} noOfLines={expanded ? undefined : MAX_LINES} align="left">
                             {synopsis}
