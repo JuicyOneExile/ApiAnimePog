@@ -34,14 +34,14 @@ function Details(props) {
     const { synopsis } = data.data;
 
     return (
-        <Container maxW="100%" minHeight="100vh" bg="#1a1a1a" py={8} align="center">
-            <Box maxW="container.lg" bg="#1a1a1a" py={8}>
-                <Flex flexDirection={{base: "column", lg: "row"}} color="#afacac" mb={5}>
-                    <AspectRatio minW="sm" ratio={4 / 6} flex="1" align="center">
-                        <Image src={data.data.images.jpg.image_url} />
+        <Container maxW="100%" minHeight="100vh" bg="#1a1a1a" py={0} align="center">
+            <Box maxW="container.lg" bg="#1a1a1a">
+                <Flex flexDirection={{base: "column", lg: "row"}} color="#afacac" align="center" justify="center">
+                    <AspectRatio minW="sm" ratio={4 / 6} flex="1">
+                        <Image src={data.data.images.jpg.image_url} style={{height: '80%', width: '80%', margin: 'auto'}}/>
                     </AspectRatio>
                     <Box flex="1" ml={{ base: 0, lg: "40px" }} align="left">
-                        <VStack align="left" spacing="6" p={6}>
+                        <VStack align="left" spacing="6">
                             <Heading size="lg" fontWeight="bold" mb={2}>
                                 {data.data.title}
                             </Heading>
